@@ -17,10 +17,19 @@ namespace BankApp.Web.Data.Repositories
             _context = context;
         }
 
-        public void Create(AppUser user)
+        public void Create(Account account)
         {
-            _context.AppUsers.Add(user);
+            _context.Set<Account>().Add(account);
             _context.SaveChanges();
+        }
+        public void Remove(Account account)
+        {
+            _context.Set<Account>().Remove(account);
+            _context.SaveChanges();
+        }
+        public List<Account> GettAl()
+        {
+            return _context.Set<Account>().ToList();
         }
     }
 }

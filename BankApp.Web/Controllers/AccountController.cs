@@ -14,17 +14,17 @@ namespace BankApp.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly BankContext _context;
         private readonly IAppUserRepository _repository;
         private readonly IAccountRepository _accountRepo;
+        private readonly IAccountMapper _accountMapper;
         private readonly IUserMapper _mapper;
 
-        public AccountController(BankContext context, IUserMapper mapper, IAppUserRepository repository, IAccountRepository accountRepo)
+        public AccountController(IUserMapper mapper, IAppUserRepository repository, IAccountRepository accountRepo, IAccountMapper accountMapper)
         {
-            _context = context;
             _mapper = mapper;
             _repository = repository;
             _accountRepo = accountRepo;
+            _accountMapper = accountMapper;
         }
 
         public IActionResult Create(int id)
@@ -35,8 +35,7 @@ namespace BankApp.Web.Controllers
         [HttpPost]
         public IActionResult Create(AccountCreateModel model)
         {
-            _accountRepo.Create(_mapper.)
-            _context.SaveChanges();
+            _accountRepo.Create(_accountMapper.Map(model));
             return RedirectToAction("Index", "Home");
         }
     }

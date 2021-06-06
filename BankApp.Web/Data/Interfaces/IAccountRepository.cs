@@ -8,6 +8,6 @@ namespace BankApp.Web.Data.Interfaces
 {
     public interface IAccountRepository
     {
-        void Create(AppUser user);
+        void Create(Account account);
     }
 }

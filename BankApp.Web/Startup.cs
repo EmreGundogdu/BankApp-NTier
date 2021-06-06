@@ -30,6 +30,7 @@ namespace BankApp.Web
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<IUserMapper, AppUserMapper>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IAccountMapper, AccountMapper>();
             services.AddControllersWithViews();
         }
 

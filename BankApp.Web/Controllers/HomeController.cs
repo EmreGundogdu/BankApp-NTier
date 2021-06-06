@@ -13,13 +13,11 @@ namespace BankApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly BankContext _context;
         private readonly IAppUserRepository _repository;
         private readonly IUserMapper _mapper;
 
-        public HomeController(BankContext bankContext, IAppUserRepository repository, IUserMapper mapper)
+        public HomeController(IAppUserRepository repository, IUserMapper mapper)
         {
-            _context = bankContext;
             _repository = repository;
             _mapper = mapper;
         }
