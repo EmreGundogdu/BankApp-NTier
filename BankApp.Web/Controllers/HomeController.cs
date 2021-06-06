@@ -1,4 +1,6 @@
 ﻿using BankApp.Web.Data.Context;
+using BankApp.Web.Data.Interfaces;
+using BankApp.Web.Data.Repositories;
 using BankApp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,21 +12,18 @@ namespace BankApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly BankContext _bankContext;
+        private readonly BankContext _context;
+        private readonly IAppUserRepository _repository;
 
-        public HomeController(BankContext bankContext)
+        public HomeController(BankContext bankContext, IAppUserRepository repository)
         {
-            _bankContext = bankContext;
+            _context = bankContext;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            return View(_bankContext.AppUsers.Select(x => new UserListModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Surname = x.Surname
-            }).ToList());
+            return View(_repository.GetAll());
         }
     }
 }
