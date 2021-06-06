@@ -56,5 +56,26 @@ namespace BankApp.Web.Controllers
             });
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
+        public IActionResult GetByUserId(int userId)
+        {
+            var query = _accounRepository.GetQuaryable();
+            var accounts = query.Where(x => x.AppUserId == userId).ToList();
+            var user = _appUserRepository.GetById(userId);
+            ViewBag.Fullname = user.Name + " " + user.Surname;
+            var list = new List<AccountListModel>();
+            foreach (var item in accounts)
+            {
+                list.Add(new()
+                {
+                    AccountNumber = item.AccountNumber,
+                    ApplicationUserId = item.AppUserId,
+                    Balance = item.Balance,
+
+                    Id = item.Id
+                });
+            }
+            return View(list);
+        }
     }
 }

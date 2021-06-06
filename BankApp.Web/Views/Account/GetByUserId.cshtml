@@ -1,0 +1,40 @@
+﻿@model List<AccountListModel>
+@{
+    Layout = "_Layout";
+}
+<div class="row mt-5">
+    <div class="col-6">
+        
+        <div class="card">
+            <h5 class="card-title lead">Kullanıcı Bilgileri</h5>
+            <div class="card-body">
+                <p class="card-text">Ad : @ViewBag.Fullname</p>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Kullanıcı Listesine Geri Dön</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h1>Hesap Bilgileri</h1>
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title lead">Hesap No  : @item.AccountNumber</h5>
+                        <p class="card-text">Bakiye :  @item.Balance</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+            <div class="alert alert-primary" role="alert">
+                Kullanıcının Hesap Bilgisi Bulunamadı
+            </div>
+        }
+
+    </div>
+</div>
