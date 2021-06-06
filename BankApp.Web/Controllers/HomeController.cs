@@ -10,9 +10,15 @@ namespace BankApp.Web.Controllers
     public class HomeController : Controller
     {
         private readonly BankContext _bankContext;
+
+        public HomeController(BankContext bankContext)
+        {
+            _bankContext = bankContext;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_bankContext.AppUsers.ToList());
         }
     }
 }
